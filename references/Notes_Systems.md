@@ -56,6 +56,8 @@ Here are some valuable resources for further exploration of System Dynamics:
 - **Websites**
   - [System Dynamics Society](https://systemdynamics.org): A hub for research, resources, and community engagement in SD.
   - [Vensim](https://vensim.com): Software for building SD models with tutorials available.
+  - [Creative Learning Exchange](http://www.clexchange.org/) Working to develop Systems Citizens in K-12 Education
+  - [PySD](https://github.com/SDXorg/pysd) Library for running System Dynamics (SD) models in Python
 
 ## Contributing
 Contributions are welcome! Please fork this repository and submit a pull request with your improvements or suggestions. Ensure that your contributions align with the project's goals of enhancing understanding of System Dynamics.
