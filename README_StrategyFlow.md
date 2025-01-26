@@ -32,9 +32,13 @@ To provide an open-source, GUI-based, low-code tool designed to simplify systems
    - AI agents for task automation
    - Insight generation from complex models
    - Adaptive workflow orchestration
-   
-## Technical Architecture
 
+## Learnings/Notes:
+- [Systems](./references/Notes_Systems.md)
+- [Agents](./references/Notes_Agents.md)
+- [Mental Models](./references/Notes_MentalModels.md)
+
+## Technical Architecture
 **Core Components:**
 - NetworkX (Graph-based workflow engine)
 - Mesa (Agent-based modeling)
