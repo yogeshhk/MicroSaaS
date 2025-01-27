@@ -28,9 +28,29 @@ Here are some valuable resources for further exploration of System Dynamics:
 - **Online Courses**
   - MIT OpenCourseWare offers free courses on System Dynamics.
   - Coursera has various courses related to systems thinking and dynamics.
-  - [JAN 2020 - Introduction to System Dynamics Modeling by NPTEL IIT Bombay](https://www.youtube.com/playlist?list=PLOzRYVm0a65fFQDTWYF4hzo6be81blfHo)
+  - [JAN 2020 - Introduction to System Dynamics Modeling by NPTEL IIT Bombay](https://www.youtube.com/playlist?list=PLOzRYVm0a65fFQDTWYF4hzo6be81blfHo)  [Notes](./Notes_SystemDynamics.md)
 
 - **Videos**
+  - [Peter Senge: "Systems Thinking for a Better World" - Aalto Systems Forum 2014](https://www.youtube.com/watch?v=0QtQqZ6Q5-o)
+  - [Systems Engineering Transformation](https://www.youtube.com/watch?v=171blNCgpCo)
+  - Model-based Systems Engineering Demystified [Part 1](https://www.youtube.com/watch?v=bcvWf4pGTz4), [Part 2](https://www.youtube.com/watch?v=rctS5cpqjsc), [Part 3](https://www.youtube.com/watch?v=IxpECbNpUQs)
+  - [Complexity Explorer Lecture: David Krakauer • What is Complexity?](https://www.youtube.com/watch?v=JR93X7xK05o)
+  - [The Five Pillars of Systems Thinking: Communication, People, Objectives, Metrics, and Networks](https://www.youtube.com/watch?v=zHegSZO_pZE)
+  - [Systems Modeling Language™ v2 (SysML® v2) Overview](https://www.youtube.com/watch?v=FXBlwmw5dEQ)
+  - [Integrating System Dynamics and SysML](https://www.youtube.com/watch?v=1RzUIurlO2E)
+  - [What Is Systems Engineering? | Systems Engineering, Part 1](https://www.youtube.com/watch?v=pSfZutP9H-U)
+  - [Towards a Model-Based Approach | Systems Engineering, Part 2](https://www.youtube.com/watch?v=bckHxdGjtQc)
+  - [Some Benefits of Model-Based Systems Engineering | Systems Engineering, Part 5](https://www.youtube.com/watch?v=ABtFFxxRWF4)
+  - [Orchestrating Model Based Systems Engineering (MBSE) with OpenMDAO](https://www.youtube.com/watch?v=on9WRmcr218)
+  - [Fundamentals of Systems Modeling - 1 of 5 (The Critical Systems Research Group)](https://www.youtube.com/watch?v=PLhrzlckL5g)
+  - [Webinar: Model-Based Systems Engineering De-mystified](https://www.youtube.com/watch?v=BPlphC88xR4)
+  - [A Beginners Guide to Model Based Systems Engineering (MBSE)](https://www.youtube.com/watch?v=kwcgA7kSrbI)
+  - [Applications of System Dynamics - Jay W. Forrester](https://www.youtube.com/watch?v=G1mVnqdlpvo)
+  - [Systems Thinking: A Defining Skill for Leadership | Willy Donaldson | TEDxCNU](https://www.youtube.com/watch?v=oF5fp8SOFX0)
+  - [System Dynamics for Beginners Hands on Training](https://www.youtube.com/watch?v=w8sWQOOEnh4)
+  - [Practical System Dynamics Modeling - Policy Dynamics Inc.](https://www.youtube.com/watch?v=A-8mfOxeFMQ)
+  - [Introduction To System Design | Sagar Narang](https://www.youtube.com/watch?v=9cWXleYAJtA)
+  - [Systems Dynamics and Control by Richard Jones III](https://www.youtube.com/playlist?list=PLwBW_NrP7cJXAmG3tg32Q3Q-QL3xvmJvC)
   - [Complex Systems Thinking](https://www.youtube.com/watch?v=0-CSs1UEbFQ)
 	- Modeling based approach.
 	- Finding order/patterns in random event, e.g. bird flock. 
@@ -50,51 +70,11 @@ Here are some valuable resources for further exploration of System Dynamics:
 		- Self-organization, 
 		- Edge of chaos (butterfly effect)
 		- Feedback loops
-		- "System is more than Sum of Parts"
-  - [Peter Senge: "Systems Thinking for a Better World" - Aalto Systems Forum 2014](https://www.youtube.com/watch?v=0QtQqZ6Q5-o)
-  - [Systems Engineering Transformation](https://www.youtube.com/watch?v=171blNCgpCo)
-  - Model-based Systems Engineering Demystified[ (Part 1) - The need for MBSE - Full Video](https://www.youtube.com/watch?v=bcvWf4pGTz4), [Part 2](https://www.youtube.com/watch?v=rctS5cpqjsc), [Part 3](https://www.youtube.com/watch?v=IxpECbNpUQs)
-  - [Complexity Explorer Lecture: David Krakauer • What is Complexity?](https://www.youtube.com/watch?v=JR93X7xK05o)
-  - [The Five Pillars of Systems Thinking: Communication, People, Objectives, Metrics, and Networks](https://www.youtube.com/watch?v=zHegSZO_pZE)
+		- "System is more than Sum of Parts"  
   - [Modeling Complex Systems in Python with Gaphor](https://www.youtube.com/watch?v=PnWKsr2csXg)
 	- Gaphor/SysML: Open-source, Multi-platform, Python for Systems Engineering
 	- Too many input variables, combinations, using MBSE (Model based System Engineering) ie Common language, Abstraction (Levels: Concept, Logical, Technology, Implementation), Automation: SysML (Systems Modeling Language)
-	- More like User Activity Graphical modeling, like UML
-  - [Systems Modeling Language™ v2 (SysML® v2) Overview](https://www.youtube.com/watch?v=FXBlwmw5dEQ)
-  - [Integrating System Dynamics and SysML](https://www.youtube.com/watch?v=1RzUIurlO2E)
-  - [What Is Systems Engineering? | Systems Engineering, Part 1](https://www.youtube.com/watch?v=pSfZutP9H-U)
-  - [Towards a Model-Based Approach | Systems Engineering, Part 2](https://www.youtube.com/watch?v=bckHxdGjtQc)
-  - [Some Benefits of Model-Based Systems Engineering | Systems Engineering, Part 5](https://www.youtube.com/watch?v=ABtFFxxRWF4)
-  - [Orchestrating Model Based Systems Engineering (MBSE) with OpenMDAO](https://www.youtube.com/watch?v=on9WRmcr218)
-  - [Fundamentals of Systems Modeling - 1 of 5 (The Critical Systems Research Group)](https://www.youtube.com/watch?v=PLhrzlckL5g)
-  - [Webinar: Model-Based Systems Engineering De-mystified](https://www.youtube.com/watch?v=BPlphC88xR4)
-  - [A Beginners Guide to Model Based Systems Engineering (MBSE)](https://www.youtube.com/watch?v=kwcgA7kSrbI)
-  - [Applications of System Dynamics - Jay W. Forrester](https://www.youtube.com/watch?v=G1mVnqdlpvo)
-  - [Systems Thinking: A Defining Skill for Leadership | Willy Donaldson | TEDxCNU](https://www.youtube.com/watch?v=oF5fp8SOFX0)
-  - [System Dynamics for Beginners Hands on Training](https://www.youtube.com/watch?v=w8sWQOOEnh4)
-  - [Practical System Dynamics Modeling - Policy Dynamics Inc.](https://www.youtube.com/watch?v=A-8mfOxeFMQ)
-  - [Introduction To System Design | Sagar Narang](https://www.youtube.com/watch?v=9cWXleYAJtA)
-  - [Systems Dynamics and Control by Richard Jones III](https://www.youtube.com/playlist?list=PLwBW_NrP7cJXAmG3tg32Q3Q-QL3xvmJvC)
-  - [NPTEL IITB System Dynamics](https://www.youtube.com/playlist?list=PLOzRYVm0a65fFQDTWYF4hzo6be81blfHo), [Notes](./Notes_SystemDynamics.md)
-	- What is System Dynamics?
-	**System Dynamics** (SD) is a methodology for understanding the nonlinear behavior of complex systems over time. It employs stocks, flows, internal feedback loops, and time delays to model dynamic interactions within systems. Originally developed in the 1950s for corporate management, it now finds applications across various sectors including public policy, healthcare, and environmental studies[1][3][5].
-
-	Quotes 
-	- System is more than sum of its parts. 
-	- Non-linear Thinking
-	- Playing the game changes the rules (based on stock, logic may change).
-
-	Key Concepts
-	- **Feedback Loops**: Chains of cause-and-effect relationships that influence system behavior.
-	- **Stocks and Flows**: Represent accumulations (stocks) and changes (flows) within a system.
-	- **Modeling and Simulation**: Using computational tools to simulate system behavior under different scenarios.
-	- **Policy Design**: Utilizing insights gained from models to inform decision-making and strategy development[1][5].
-
-	System Dynamics Approach
-	- Dynamics Thinking (Graph over time)
-	- Causal thinking (feedback loops)
-	- Stock and flow thinking (accumulations)
-	- Thinking endogenously (system as cause)
+	- More like User Activity Graphical modeling, like UML  
   
 - **Websites**
   - [System Dynamics Society](https://systemdynamics.org): A hub for research, resources, and community engagement in SD. [Youtube Channel](https://www.youtube.com/@systemdynamics_)
@@ -112,14 +92,3 @@ Contributions are welcome! Please fork this repository and submit a pull request
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-
-Citations:
-[1] https://www.uib.no/en/rg/dynamics/39282/what-system-dynamics
-[2] https://github.com/RichardLitt/standard-readme
-[3] https://en.wikipedia.org/wiki/System_dynamics
-[4] https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes
-[5] https://systemdynamics.org/what-is-system-dynamics/
-[6] https://innostax.com/generate-dynamic-readme-md-files-via-github-actions/
-[7] https://teacherplus.org/2012/cover-story/the-dynamics-of-the-learning-system/
-[8] https://www.researchgate.net/publication/372583788_What_is_System_Dynamics_Defining_Characteristics_and_the_Opportunities_they_Create
