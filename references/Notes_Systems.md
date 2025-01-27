@@ -32,7 +32,32 @@ Here are some valuable resources for further exploration of System Dynamics:
 
 - **Videos**
   - [Complex Systems Thinking](https://www.youtube.com/watch?v=0-CSs1UEbFQ)
+	- Modeling based approach.
+	- Finding order/patterns in random event, e.g. bird flock. 
+	- Underlying structure. e.g. Power Law
+	- Complex systems are more about interactions than components
+	- Newtonian Thinking: 
+		- Equilibrium, 
+		- Deterministic, 
+		- Causal (linear), 
+		- Reductionist 
+		- "System is Sum of Parts"
+	- How to deal with complex systems: 
+		- Agent based modeling (Good for understandings but not for prediction): define agents and interactions, put them in the field and see what macro picture emerges. E.g. NetLogo, Game of Life
+		- Machine Learning (better for Prediction not understanding)
+	- Systems Thinking: 
+		- Emergence (what was not programmed for), 
+		- Self-organization, 
+		- Edge of chaos (butterfly effect)
+		- Feedback loops
+		- "System is more than Sum of Parts"
+  - [Peter Senge: "Systems Thinking for a Better World" - Aalto Systems Forum 2014](https://www.youtube.com/watch?v=0QtQqZ6Q5-o)
+  - [Systems Engineering Transformation](https://www.youtube.com/watch?v=171blNCgpCo)
+  - Model-based Systems Engineering Demystified[ (Part 1) - The need for MBSE - Full Video](https://www.youtube.com/watch?v=bcvWf4pGTz4), [Part 2](https://www.youtube.com/watch?v=rctS5cpqjsc), [Part 3](https://www.youtube.com/watch?v=IxpECbNpUQs)
+  - [Complexity Explorer Lecture: David Krakauer • What is Complexity?](https://www.youtube.com/watch?v=JR93X7xK05o)
+  - [The Five Pillars of Systems Thinking: Communication, People, Objectives, Metrics, and Networks](https://www.youtube.com/watch?v=zHegSZO_pZE)
   - [Modeling Complex Systems in Python with Gaphor](https://www.youtube.com/watch?v=PnWKsr2csXg)
+	- Open-source 
   - [Systems Modeling Language™ v2 (SysML® v2) Overview](https://www.youtube.com/watch?v=FXBlwmw5dEQ)
   - [Integrating System Dynamics and SysML](https://www.youtube.com/watch?v=1RzUIurlO2E)
   - [What Is Systems Engineering? | Systems Engineering, Part 1](https://www.youtube.com/watch?v=pSfZutP9H-U)
