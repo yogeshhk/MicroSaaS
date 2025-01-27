@@ -57,7 +57,9 @@ Here are some valuable resources for further exploration of System Dynamics:
   - [Complexity Explorer Lecture: David Krakauer • What is Complexity?](https://www.youtube.com/watch?v=JR93X7xK05o)
   - [The Five Pillars of Systems Thinking: Communication, People, Objectives, Metrics, and Networks](https://www.youtube.com/watch?v=zHegSZO_pZE)
   - [Modeling Complex Systems in Python with Gaphor](https://www.youtube.com/watch?v=PnWKsr2csXg)
-	- Open-source 
+	- Gaphor/SysML: Open-source, Multi-platform, Python for Systems Engineering
+	- Too many input variables, combinations, using MBSE (Model based System Engineering) ie Common language, Abstraction (Levels: Concept, Logical, Technology, Implementation), Automation: SysML (Systems Modeling Language)
+	- More like User Activity Graphical modeling, like UML
   - [Systems Modeling Language™ v2 (SysML® v2) Overview](https://www.youtube.com/watch?v=FXBlwmw5dEQ)
   - [Integrating System Dynamics and SysML](https://www.youtube.com/watch?v=1RzUIurlO2E)
   - [What Is Systems Engineering? | Systems Engineering, Part 1](https://www.youtube.com/watch?v=pSfZutP9H-U)
@@ -99,6 +101,7 @@ Here are some valuable resources for further exploration of System Dynamics:
   - [Vensim](https://vensim.com): Software for building SD models with tutorials available.
   - [Creative Learning Exchange](http://www.clexchange.org/) Working to develop Systems Citizens in K-12 Education
   - [PySD](https://github.com/SDXorg/pysd) Library for running System Dynamics (SD) models in Python
+  - [Gaphor/SysML](https://gaphor.org/), [github](https://github.com/gaphor/gaphor)
   
  - **Articles/Papers**
  - [Artificial Intelligence and Electricity: A System Dynamics Approach](https://www.se.com/ww/en/insights/sustainability/sustainability-research-institute/artificial-intelligence-electricity-system-dynamics-approach/)
