@@ -16,6 +16,7 @@ Leveraging INFJ cognitive empathy and systems engineering expertise to decode co
 
 ## Implementations
 - [StrategyFlow](./README_StrategyFlow.md)
+- [RLConsult](./README_RLConsult.md)
 
 ## Mission
 The mission is to consult individuals and organizations to model, analyze, and solve problems across any domain. 
