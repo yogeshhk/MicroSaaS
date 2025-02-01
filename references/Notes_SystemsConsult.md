@@ -3,6 +3,25 @@
 ## Overview
 This repository is dedicated to **System Thinking and Dynamics**, a field focused on understanding and modeling complex systems through simulation and feedback analysis. The primary aim is to enhance decision-making in various domains by providing tools and methodologies that capture the dynamic behavior of systems over time.
 
+**System Dynamics** (SD) is a methodology for understanding the nonlinear behavior of complex systems over time. It employs stocks, flows, internal feedback loops, and time delays to model dynamic interactions within systems. Originally developed in the 1950s for corporate management, it now finds applications across various sectors including public policy, healthcare, and environmental studies[1][3][5].
+
+## Quotes 
+- System is more than sum of its parts. 
+- Non-linear Thinking
+- Playing the game changes the rules (based on stock, logic may change).
+
+## Key Concepts
+- **Feedback Loops**: Chains of cause-and-effect relationships that influence system behavior.
+- **Stocks and Flows**: Represent accumulations (stocks) and changes (flows) within a system.
+- **Modeling and Simulation**: Using computational tools to simulate system behavior under different scenarios.
+- **Policy Design**: Utilizing insights gained from models to inform decision-making and strategy development[1][5].
+
+## System Dynamics Approach
+- Dynamics Thinking (Graph over time)
+- Causal thinking (feedback loops)
+- Stock and flow thinking (accumulations)
+- Thinking endogenously (system as cause)
+
 
 ## Installation
 To get started with System Dynamics modeling, you may need specific software tools. Below are some popular options:
@@ -35,6 +54,41 @@ Here are some valuable resources for further exploration of System Dynamics:
 	- Uses Vensim to model Population growth. 
 	- Compares with similar modeling in xls
 	- Its [Youtube channel](https://www.youtube.com/@policy.dynamics) has many such usecases.
+  - [Daniel Schmachtenberger’s talk at Emergence](https://www.youtube.com/watch?v=eh7qvXfGQho)
+	1. Emergence occurs when something fundamentally new arises that wasn't present before, such as a living cell emerging from non-living molecules, representing a scientifically admissible form of "magic."
+
+	2. Synergy and emergence are paired concepts - synergy creates wholes greater than the sum of their parts, while emergence describes the new properties that arise from these synergistic relationships.
+
+	3. All emergence stems from attractive forces, both physical (gravity, electromagnetism) and metaphysical (love, shared purpose), which Buckminster Fuller called "metaphysical gravity."
+
+	4. Emergence requires elegant ordered complexity, not just random combination - components must be arranged in specific patterns to create meaningful emergent properties.
+
+	5. More interesting synergies emerge from combining different elements rather than similar ones, exemplified by how hydrogen and oxygen combine to create water with entirely new properties.
+
+	6. Evolution selects for systems that exhibit the most advantageous emergent properties, driving both increasing diversity and more sophisticated unification across differences.
+
+	7. The evolutionary universe moves toward more elegant ordered complexity without requiring a creator, operating through self-organizing principles rather than random probability.
+
+	8. Consciousness evolution progresses through increasingly complex nervous systems, from reptilian (pain/pleasure) to prefrontal cortex (abstraction and planning).
+
+	9. Human abstract thinking allows us to understand deep past and future, making us unique in our ability to consciously participate in evolution.
+
+	10. Every individual represents a unique facet of universal evolution, offering something that no one else can contribute exactly the same way.
+
+	11. Competition becomes an obsolete concept when we understand that universal evolution moves toward greater differentiation and symbiosis across novelty.
+
+	12. Current global systems are experiencing simultaneous exponential improvements and degradation, indicating an approaching phase shift rather than linear progression.
+
+	13. Future social systems must align individual incentives with collective well-being, moving from differential advantage to systemic advantage for the whole.
+
+	14. Infrastructure must shift from linear materials economy (extract-use-waste) to closed-loop systems that maintain progressively higher quality of life sustainably.
+
+	15. Modern challenges are inherently global, requiring coordinated solutions across all nations and peoples, as local problems have become extinct in our interconnected world.
+
+	16. Success for any individual cannot be meaningfully separated from the success of the whole system, given our fundamental interconnectedness.
+
+	17. Humans can now consciously choose how to participate in evolution, moving from being passive participants to active creators of future emergence.  
+ 
   - [Systems Dynamics and Control by Richard Jones III](https://www.youtube.com/playlist?list=PLwBW_NrP7cJXAmG3tg32Q3Q-QL3xvmJvC)
   - [Complex Systems Thinking](https://www.youtube.com/watch?v=0-CSs1UEbFQ)
 	- Modeling based approach.
@@ -72,6 +126,18 @@ Here are some valuable resources for further exploration of System Dynamics:
  - **Articles/Papers**
  - [Artificial Intelligence and Electricity: A System Dynamics Approach](https://www.se.com/ww/en/insights/sustainability/sustainability-research-institute/artificial-intelligence-electricity-system-dynamics-approach/)
  - [Understanding Large Language Models (LLMs) through Systems Theory](https://www.linkedin.com/pulse/understanding-large-language-models-llms-through-systems-boray-l8huc/?trackingId=etDwEKXVT8al7E%2Fm6yvi1w%3D%3D)
+
+
+## Citations:
+[1] https://www.uib.no/en/rg/dynamics/39282/what-system-dynamics
+[2] https://github.com/RichardLitt/standard-readme
+[3] https://en.wikipedia.org/wiki/System_dynamics
+[4] https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes
+[5] https://systemdynamics.org/what-is-system-dynamics/
+[6] https://innostax.com/generate-dynamic-readme-md-files-via-github-actions/
+[7] https://teacherplus.org/2012/cover-story/the-dynamics-of-the-learning-system/
+[8] https://www.researchgate.net/publication/372583788_What_is_System_Dynamics_Defining_Characteristics_and_the_Opportunities_they_Create 
+
 
 ## Contributing
 Contributions are welcome! Please fork this repository and submit a pull request with your improvements or suggestions. Ensure that your contributions align with the project's goals of enhancing understanding of System Dynamics.
