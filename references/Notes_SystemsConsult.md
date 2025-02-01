@@ -1,4 +1,4 @@
-# Systems Thinking and Dynamics
+# Systems Consultancy
 
 ## Overview
 This repository is dedicated to **System Thinking and Dynamics**, a field focused on understanding and modeling complex systems through simulation and feedback analysis. The primary aim is to enhance decision-making in various domains by providing tools and methodologies that capture the dynamic behavior of systems over time.

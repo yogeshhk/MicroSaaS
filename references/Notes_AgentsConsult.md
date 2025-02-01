@@ -1,4 +1,6 @@
-#   कारक (Kāraka)
+# Agentic Systems Consultancy
+
+Agents == कारक (Kāraka)
 
 कारक (Kāraka) from Sanskrit means agent, doer. 'Kaaraka' is an open-source project that provides a framework for building and deploying intelligent agents powered by large language models (LLMs). These agents can be used for various tasks such as question-answering, task automation, personalized assistance, and more.
 

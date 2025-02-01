@@ -14,9 +14,11 @@ Position as a coach and thought leader in a pioneering a transformative approach
 ### Founder's Unique Perspective
 Leveraging INFJ cognitive empathy and systems engineering expertise to decode complex adaptive challenges through an innovative lens.
 
-## Implementations
-- [StrategyFlow](./README_StrategyFlow.md)
-- [RLConsult](./README_RLConsult.md)
+## Notes
+- [StrategyFlow](./references/Notes_StrategyFlow.md)
+- [RLConsult](./references/Notes_RLConsult.md)
+- [AgentsConsult](./references/Notes_AgentsConsult.md)
+- [SystemsConsult](./references/Notes_SystemsConsult.md)
 
 ## Mission
 The mission is to consult individuals and organizations to model, analyze, and solve problems across any domain. 
