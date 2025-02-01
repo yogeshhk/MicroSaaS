@@ -1,27 +1,30 @@
-# Systems Dynamics - NPTEL IITB
-- What is System Dynamics?
+# Systems Dynamics
+
 **System Dynamics** (SD) is a methodology for understanding the nonlinear behavior of complex systems over time. It employs stocks, flows, internal feedback loops, and time delays to model dynamic interactions within systems. Originally developed in the 1950s for corporate management, it now finds applications across various sectors including public policy, healthcare, and environmental studies[1][3][5].
 
-Quotes 
+## Quotes 
 - System is more than sum of its parts. 
 - Non-linear Thinking
 - Playing the game changes the rules (based on stock, logic may change).
 
-Key Concepts
+## Key Concepts
 - **Feedback Loops**: Chains of cause-and-effect relationships that influence system behavior.
 - **Stocks and Flows**: Represent accumulations (stocks) and changes (flows) within a system.
 - **Modeling and Simulation**: Using computational tools to simulate system behavior under different scenarios.
 - **Policy Design**: Utilizing insights gained from models to inform decision-making and strategy development[1][5].
 
-System Dynamics Approach
+## System Dynamics Approach
 - Dynamics Thinking (Graph over time)
 - Causal thinking (feedback loops)
 - Stock and flow thinking (accumulations)
 - Thinking endogenously (system as cause)
 
+##  NPTEL IITB
+  - [JAN 2020 - Introduction to System Dynamics Modeling by NPTEL IIT Bombay](https://www.youtube.com/playlist?list=PLOzRYVm0a65fFQDTWYF4hzo6be81blfHo) 
+  
+  
 
-
-Citations:
+## Citations:
 [1] https://www.uib.no/en/rg/dynamics/39282/what-system-dynamics
 [2] https://github.com/RichardLitt/standard-readme
 [3] https://en.wikipedia.org/wiki/System_dynamics
