@@ -11,10 +11,12 @@ Position as a coach and thought leader in a pioneering a transformative approach
 - **Emergent:** Unlocking potential from interconnected systems
 - **021 (Zero to One):** Symbolic representation of disruptive innovation
 
+<!--
+
 ### Founder's Unique Perspective
 Leveraging INFJ cognitive empathy and systems engineering expertise to decode complex adaptive challenges through an innovative lens.
 
-## Notes
+ ## Notes
 - [StrategyFlow](./references/Notes_StrategyFlow.md)
 - [RLConsult](./references/Notes_RLConsult.md)
 - [AgentsConsult](./references/Notes_AgentsConsult.md)
@@ -24,7 +26,7 @@ Leveraging INFJ cognitive empathy and systems engineering expertise to decode co
 The mission is to consult individuals and organizations to model, analyze, and solve problems across any domain. 
 
 ## Vision
-Develop a portable language for modeling, analyzing, and solving problems across diverse domains through systems thinking.
+Develop a portable language for modeling, analyzing, and solving problems across diverse domains through systems thinking AI Agents.
 
 ### Key Features
 - **Personalized Coaching**: 1:1 coaching sessions tailored to INFJs, leveraging their unique ability to grasp complex emotional and systemic dynamics rapidly.
@@ -76,6 +78,8 @@ Develop a portable language for modeling, analyzing, and solving problems across
 - Promoting adaptive and integrative thinking
 - Connecting diverse knowledge domains
 
+ -->
+ 
 ## Community and Collaboration
 Committed to collaborative innovation, knowledge sharing, and continuous learning across disciplines and technologies.
 
