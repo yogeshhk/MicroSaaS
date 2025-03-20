@@ -1,7 +1,7 @@
 import os
 import streamlit as st
 from typing_extensions import TypedDict
-from langgraph.graph import StateGraph, END
+from langgraph.graph import StateGraph, END, START
 from langchain_groq.chat_models import ChatGroq
 from tavily import TavilyClient
 from langchain_core.prompts import ChatPromptTemplate
@@ -22,8 +22,44 @@ import re
 class GraphState(TypedDict):
     user_request: str
     requirements_docs_content: str
+    requirements_docs_summary: str
     testcases_format: str
     testcases: str
+    answer: str
+
+#############################################################################
+# 2. To generate Summary of the requirements document
+#############################################################################
+def generate_summary_node_function(state: GraphState) -> GraphState:
+    """
+    Uses LLM to generate summary of `requirements_docs_content`.
+    """
+    # print(f"YHK: inside generate_summary_node_function with state as {state}")
+
+    requirements_docs_content = state.get("requirements_docs_content", "")
+    if "llm" not in st.session_state:
+        raise RuntimeError("LLM not initialized. Please call initialize_app first.")
+
+    prompt = (
+    "You are an expert in generating QA testcases for any known formats. \n" + 
+    "Study the given 'Requirements Documents Content' carefully and generate summary of about 5 lines\n" +
+    f"Requirements Documents Content: {requirements_docs_content}\n" +
+    "Answer:"
+    )
+    
+    # print(f"YHK: inside generate_summary_node_function with prompt as:\n {prompt}")
+
+    try:
+        response = st.session_state.llm.invoke(prompt)
+    except Exception as e:
+        response = f"Error generating answer: {str(e)}"
+        
+    # print(f"YHK: returning from generate_summary_node_function with response as:\n {type(response)} also testcases {response.content}")
+        
+    state ['requirements_docs_summary'] = response.content
+    state ['answer'] = response.content
+    return state
+
 
 #############################################################################
 # 2. Router function to decide whether to output gherkin or selenium
@@ -125,7 +161,7 @@ def generate_gherkin_testcases_node_function(state: GraphState) -> GraphState:
     response = generate_testcases(user_request, requirements_docs_content,st.session_state.llm, testcases_format)
     
     state ['testcases'] = response
-    
+    state ['answer'] = response
     return state
 
 
@@ -147,7 +183,7 @@ def generate_selenium_testcases_node_function(state: GraphState) -> GraphState:
     response = generate_testcases(user_request, requirements_docs_content,st.session_state.llm, testcases_format)
     
     state ['testcases'] = response
-    
+    state ['answer'] = response
     return state
 
 
@@ -156,12 +192,20 @@ def generate_selenium_testcases_node_function(state: GraphState) -> GraphState:
 #############################################################################
 workflow = StateGraph(GraphState)
 # Add nodes
+workflow.add_node("summary_node", generate_summary_node_function)
 workflow.add_node("gherkin_node", generate_gherkin_testcases_node_function)
 workflow.add_node("selenium_node", generate_selenium_testcases_node_function)
-# We'll route from "route_user_request" to either "gherkin_node" or "selenium_node"
+# Start with summary node
+# Then route from "route_user_request" to either "gherkin_node" or "selenium_node"
 # From "gherkin_testcases" -> END
 # From "geselenium_testcasesnerate" -> END 
-workflow.set_conditional_entry_point(
+
+# Add the Edges
+# workflow.add_edge(START, "summary_node")
+workflow.set_entry_point("summary_node")
+
+workflow.add_conditional_edges(
+    "summary_node",
     route_user_request,  # The router function, its output decides which node to go to
     {
         "gherkin": "gherkin_node",

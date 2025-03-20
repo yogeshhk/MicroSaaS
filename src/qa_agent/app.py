@@ -98,12 +98,12 @@ if user_request:
                 response_placeholder = st.empty()
                 
                 # Stream the output
-                generated_test_cases = ""
+                total_answer = ""
                 for output in app.stream(inputs):
                     for node_name, state in output.items():
-                        if 'testcases' in state:
-                            generated_test_cases = state['testcases']
-                            response_placeholder.markdown(generated_test_cases)
+                        if 'answer' in state:
+                            total_answer += state['answer']
+                response_placeholder.markdown(total_answer)
                 
                 # Add the assistant's response to the chat history
-                st.session_state.messages.append({"role": "assistant", "content": generated_test_cases})
+                st.session_state.messages.append({"role": "assistant", "content": total_answer})
