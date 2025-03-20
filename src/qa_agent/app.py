@@ -1,5 +1,5 @@
 import streamlit as st
-from agent import initialize_app
+from agent import initialize_app, format_response
 import io
 import pypdf 
 import os
@@ -91,9 +91,11 @@ if user_request:
     st.write("Generating test cases...")
     # Placeholder for AI output, replace with actual generated test cases
     # generated_test_cases = app.stream(inputs)
+    generated_test_cases = ""
     for output in app.stream(inputs):
-        for key, value in output.items():
-            print(f"Finished running: {key}:")
+        for node_name, state in output.items():
+            # print(f"Finished running: {node_name} with value as {state}:")
+            generated_test_cases = state['testcases']
         
     # generated_test_cases = f"**Generated Test Cases (using {selected_model}):**\n\nQuery: {user_query}\n\n1. Test Case 1\n2. Test Case 2\n3. Test Case 3\n\n... (more generated test cases)"
-    # st.markdown(generated_test_cases)
+    st.markdown(generated_test_cases)

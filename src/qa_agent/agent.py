@@ -72,18 +72,17 @@ def route_user_request(state: GraphState) -> str:
     # print(f"YHK: route_user_request: raw {tool} output response")
 
     tool = re.sub(r"[\\'\"`]", "", tool.strip()) # Remove any backslashes and extra spaces
+    # print(f"YHK: route_user_request: clean {tool} output response")
     
-    print(f"YHK: route_user_request: clean {tool} output response\n\n")
-    
-    ## <YHK> Assuming only 2 for now
-    if "gherkin_format" in tool:
+    ## <YHK> Assuming only 2 options for now
+    if "gherkin" in tool:
         tool = "gherkin"
     else:
         tool = "selenium"
         
     state["testcases_format"] = tool
     
-    print(f"YHK: returning from route_user_request with tool as \n\n {tool}")
+    print(f"YHK: returning from route_user_request with tool as: {tool}")
     return tool
 
 def generate_testcases(user_request, requirements_content, llm, format_type):
@@ -91,20 +90,22 @@ def generate_testcases(user_request, requirements_content, llm, format_type):
     "You are an expert in generating QA testcases for any known formats. \n" + 
     "Study the given 'Requirements Documents Content' carefully and generate about 5-10 testcases in the suggested 'Format'\n" +
     "You may want to look at the original User Request just to make sure that you are ansering th request properly.\n" +
-    f"User Request: {user_request}\n\n" +
-    # f"Requirements Documents Content: {requirements_content}\n\n" +
-    f"Format: {format_type}\n\n" +
+    f"User Request: {user_request}\n" +
+    f"Requirements Documents Content: {requirements_content}\n" +
+    f"Format: {format_type}\n" +
     "Answer:"
     )
     
-    print(f"YHK: inside generate_testcases with prompt as \n\n {prompt}")
+    # print(f"YHK: inside generate_testcases with prompt as:\n {prompt}")
 
     try:
         response = llm.invoke(prompt)
     except Exception as e:
         response = f"Error generating answer: {str(e)}"
         
-    return response
+    # print(f"YHK: returning from generate_testcases with response as:\n {type(response)} also testcases {response.content}")
+        
+    return response.content
 
 #############################################################################
 # 3. To generate Gherikin formatted Testcases
@@ -117,7 +118,7 @@ def generate_gherkin_testcases_node_function(state: GraphState) -> GraphState:
 
     user_request = state["user_request"]
     requirements_docs_content = state.get("requirements_docs_content", "")
-    testcases_format = state.get("testcases_format", "gherkin_format")
+    testcases_format = state.get("testcases_format", "gherkin")
     if "llm" not in st.session_state:
         raise RuntimeError("LLM not initialized. Please call initialize_app first.")
 
@@ -127,6 +128,23 @@ def generate_gherkin_testcases_node_function(state: GraphState) -> GraphState:
     
     return state
 
+def format_response(state:GraphState)-> str:
+    # Access the 'content' field within the 'testcases' dictionary
+    test_cases_content = state['testcases']
+
+    print(f"YHK: inside format_response with test_cases_content as {test_cases_content}")
+
+    # Split the content into lines
+    lines = test_cases_content.split('\n')
+
+    # Filter out lines that start with "Test Case"
+    test_case_lines = [line for line in lines if line.startswith("Test Case")]
+
+    # Print the test case lines
+    # for line in test_case_lines:
+    #     print(line)
+    return test_case_lines
+
 #############################################################################
 # 4. To generate Selenium formatted Testcase
 #############################################################################
@@ -134,15 +152,15 @@ def generate_selenium_testcases_node_function(state: GraphState) -> GraphState:
     """
     Uses LLM to generate Selenium formatted Testcases of `requirements_docs_summary`.
     """    
-    print(f"YHK: inside generate_selenium_testcases with state as {state}")
+    # print(f"YHK: inside generate_selenium_testcases with state as {state}")
     
     user_request = state["user_request"]
-    requirements_docs_summary = state.get("requirements_docs_summary", "")
-    testcases_format_flag = state.get("testcases_format_flag", "False")
+    requirements_docs_content = state.get("requirements_docs_content", "")
+    testcases_format = state.get("testcases_format", "selenium")
     if "llm" not in st.session_state:
         raise RuntimeError("LLM not initialized. Please call initialize_app first.")
 
-    response = generate_testcases(user_request, requirements_docs_summary,st.session_state.llm, testcases_format_flag)
+    response = generate_testcases(user_request, requirements_docs_content,st.session_state.llm, testcases_format)
     
     state ['testcases'] = response
     
