@@ -22,24 +22,22 @@ import re
 class GraphState(TypedDict):
     user_request: str
     requirements_docs_content: str
-    requirements_docs_summary: str
-    gherkin_testcases: str
-    selenium_testcases: str  
-    testcases_format_flag: str
+    testcases_format: str
     testcases: str
 
 #############################################################################
 # 2. Router function to decide whether to output gherkin or selenium
 #############################################################################
 def route_user_request(state: GraphState) -> str:
-    print(f"YHK: inside route_user_request with state as {state}")
+    # print(f"YHK: inside route_user_request with state as {state}")
+    # print(f"YHK: inside route_user_request with session state as {st.session_state}")
+
     user_request = state["user_request"]
-    # testcases_format_flag = state.get("testcases_format_flag", "False")
     tool_selection = {
-    "gherkin_testcases": (
+    "gherkin_format": (
         "Use requests generation of testcases in Gherkin format "
     ),
-    "selenium_testcases": (
+    "selenium_format": (
         "Use requests generation of testcases in Selenium format"
     )
     }
@@ -55,10 +53,10 @@ def route_user_request(state: GraphState) -> str:
         [
             ("system", SYS_PROMPT),
             ("human", """Here is the user's request:
-                        {question}
+                        {user_request}
                         Here is the tool selection dictionary:
                         {tool_selection}
-                        Output the required tool.
+                        Output the required tool name from the tool selection dictionary only. Just one word.
                     """),
         ]
     )
@@ -71,27 +69,36 @@ def route_user_request(state: GraphState) -> str:
 
     # Invoke the chain
     tool = (prompt | st.session_state.llm | StrOutputParser()).invoke(inputs)
+    # print(f"YHK: route_user_request: raw {tool} output response")
+
     tool = re.sub(r"[\\'\"`]", "", tool.strip()) # Remove any backslashes and extra spaces
     
+    print(f"YHK: route_user_request: clean {tool} output response\n\n")
+    
     ## <YHK> Assuming only 2 for now
-    if tool == "gherkin_testcases":
-        state["testcases_format_flag"] = "gherkin_testcases"
+    if "gherkin_format" in tool:
+        tool = "gherkin"
     else:
-        state["testcases_format_flag"] = "selenium_testcases"
+        tool = "selenium"
         
-    print(f"Invoking {tool} tool through {st.session_state.llm.model_name}")
+    state["testcases_format"] = tool
+    
+    print(f"YHK: returning from route_user_request with tool as \n\n {tool}")
     return tool
 
 def generate_testcases(user_request, requirements_content, llm, format_type):
     prompt = (
-    "You are an expert in generating QA testcases for any known formats"
-    "Study the given 'Requirements Documents Content' carefully and generate about 5-10 testcases in the suggested 'Format'"
-    "You may want to look at the original User Request just to make sure that you are ansering th request properly."
-    f"User Request: {user_request}\n\n"
-    f"equirements Documents Content: {requirements_content}\n\n"
-    f"Format: {format_type}"
+    "You are an expert in generating QA testcases for any known formats. \n" + 
+    "Study the given 'Requirements Documents Content' carefully and generate about 5-10 testcases in the suggested 'Format'\n" +
+    "You may want to look at the original User Request just to make sure that you are ansering th request properly.\n" +
+    f"User Request: {user_request}\n\n" +
+    # f"Requirements Documents Content: {requirements_content}\n\n" +
+    f"Format: {format_type}\n\n" +
     "Answer:"
     )
+    
+    print(f"YHK: inside generate_testcases with prompt as \n\n {prompt}")
+
     try:
         response = llm.invoke(prompt)
     except Exception as e:
@@ -102,19 +109,19 @@ def generate_testcases(user_request, requirements_content, llm, format_type):
 #############################################################################
 # 3. To generate Gherikin formatted Testcases
 #############################################################################
-def generate_gherkin_testcases(state: GraphState) -> GraphState:
+def generate_gherkin_testcases_node_function(state: GraphState) -> GraphState:
     """
-    Uses LLM to generate Gherikin formatted Testcases of `requirements_docs_summary`.
+    Uses LLM to generate Gherikin formatted Testcases of `requirements_docs_content`.
     """
-    print(f"YHK: inside generate_gherkin_testcases with state as {state}")
+    # print(f"YHK: inside generate_gherkin_testcases with state as {state}")
 
     user_request = state["user_request"]
-    requirements_docs_summary = state.get("requirements_docs_summary", "")
-    testcases_format_flag = state.get("testcases_format_flag", "False")
+    requirements_docs_content = state.get("requirements_docs_content", "")
+    testcases_format = state.get("testcases_format", "gherkin_format")
     if "llm" not in st.session_state:
         raise RuntimeError("LLM not initialized. Please call initialize_app first.")
 
-    response = generate_testcases(user_request, requirements_docs_summary,st.session_state.llm, testcases_format_flag)
+    response = generate_testcases(user_request, requirements_docs_content,st.session_state.llm, testcases_format)
     
     state ['testcases'] = response
     
@@ -123,7 +130,7 @@ def generate_gherkin_testcases(state: GraphState) -> GraphState:
 #############################################################################
 # 4. To generate Selenium formatted Testcase
 #############################################################################
-def generate_selenium_testcases(state: GraphState) -> GraphState:
+def generate_selenium_testcases_node_function(state: GraphState) -> GraphState:
     """
     Uses LLM to generate Selenium formatted Testcases of `requirements_docs_summary`.
     """    
@@ -147,20 +154,20 @@ def generate_selenium_testcases(state: GraphState) -> GraphState:
 #############################################################################
 workflow = StateGraph(GraphState)
 # Add nodes
-workflow.add_node("gherkin_testcases", generate_gherkin_testcases)
-workflow.add_node("selenium_testcases", generate_selenium_testcases)
-# We'll route from "route_user_request" to either "gherkin_testcases" or "selenium_testcases"
+workflow.add_node("gherkin_node", generate_gherkin_testcases_node_function)
+workflow.add_node("selenium_node", generate_selenium_testcases_node_function)
+# We'll route from "route_user_request" to either "gherkin_node" or "selenium_node"
 # From "gherkin_testcases" -> END
 # From "geselenium_testcasesnerate" -> END 
 workflow.set_conditional_entry_point(
-    route_user_request,  # The router function
+    route_user_request,  # The router function, its output decides which node to go to
     {
-        "gherkin_testcases": "generate_gherkin_testcases",
-        "selenium_testcases": "generate_selenium_testcases"
+        "gherkin": "gherkin_node",
+        "selenium": "selenium_node"
     }
 )
-workflow.add_edge("gherkin_testcases", END)
-workflow.add_edge("selenium_testcases", END)
+workflow.add_edge("gherkin_node", END)
+workflow.add_edge("selenium_node", END)
 
 #############################################################################
 # 6. The initialize_app function
@@ -177,5 +184,6 @@ def initialize_app(model_name: str):
     st.session_state.llm = ChatGroq(model=model_name, temperature=0.0)
     st.session_state.selected_model = model_name
     print(f"Using model: {model_name}")
+    print(f"Using state: {st.session_state.llm}")
     return workflow.compile()
 

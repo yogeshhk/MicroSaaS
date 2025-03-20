@@ -2,19 +2,21 @@ import streamlit as st
 from agent import initialize_app
 import io
 import pypdf 
+import os
+from langchain_groq.chat_models import ChatGroq
 
 requirements_docs_content = ""
 
 # App title
-# st.title("Testcase Generation Agent")
+st.title("Testcase Generation Agent")
 
 # Configure the Streamlit page layout
-st.set_page_config(
-    page_title="Testcase Generation Agent",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    page_icon="🤖"
-)
+# st.set_page_config(
+#     page_title="Testcase Generation Agent",
+#     layout="wide",
+#     initial_sidebar_state="expanded",
+#     page_icon="🤖"
+# )
 
 # Initialize session state for messages
 if "messages" not in st.session_state:
@@ -23,20 +25,13 @@ if "messages" not in st.session_state:
 # Left sidebar
 with st.sidebar:
     st.header("Configuration")
+    
     uploaded_file = st.file_uploader("Upload Requirements Document", type=["txt", "pdf", "docx"])
-    if uploaded_file is not None:
-        if uploaded_file.type == "text/plain":
-            requirements_docs_content = uploaded_file.getvalue().decode("utf-8")
-        elif uploaded_file.type == "application/pdf":
-            pdf_reader = pypdf.PdfReader(io.BytesIO(uploaded_file.getvalue()))
-            for page in pdf_reader.pages:
-                requirements_docs_content += page.extract_text()
-
-    # Now 'requirements_docs_content' contains the text from the uploaded file
+    if "uploaded_file" not in st.session_state:
+        st.session_state.uploaded_file = uploaded_file
 
     # Initialize session state for the model if it doesn't exist
-    if "uploaded_file" not in st.session_state:
-        st.session_state.uploaded_file = "./content.txt"
+
         
     # Initialize session state for the model if it doesn't exist
     if "selected_model" not in st.session_state:
@@ -50,8 +45,11 @@ with st.sidebar:
         "mixtral-8x7b-32768",
         "gemma2-9b-it"
     ]
-    selected_model = st.selectbox("Select Model", model_options, key="model_selector", index=model_options.index(st.session_state.selected_model))
+    selected_model = st.selectbox("Select Model", model_options, key="selected_model", index=model_options.index(st.session_state.selected_model))
     
+    if "llm" not in st.session_state:
+        st.session_state.llm = ChatGroq(model=selected_model, temperature=0.0)
+            
     reset_button = st.button("🔄 Reset Conversation", key="reset_button")
     if reset_button:
         st.session_state.messages = []    
@@ -71,13 +69,31 @@ if user_request:
         with st.chat_message("user"):
             st.markdown(f"**You:** {user_request}")
 
+    if st.session_state.uploaded_file is not None:
+        if st.session_state.uploaded_file.type == "text/plain":
+            requirements_docs_content = st.session_state.uploaded_file.getvalue().decode("utf-8")
+        elif st.session_state.uploaded_file.type == "application/pdf":
+            pdf_reader = pypdf.PdfReader(io.BytesIO(st.session_state.uploaded_file.getvalue()))
+            for page in pdf_reader.pages:
+                requirements_docs_content += page.extract_text()
+    elif os.path.exists("./content.txt"): #Check if default file exists
+        try:
+            with open("./content.txt", "r", encoding='utf-8') as f:
+                requirements_docs_content = f.read()
+        except Exception as e:
+            st.error(f"Error reading default file: {e}")
+    # Now 'requirements_docs_content' contains the text from the uploaded file
+    
     inputs = {"user_request": user_request, "requirements_docs_content": requirements_docs_content}
-    print(f"YHK Inputs are {inputs}")
+    # print(f"YHK: in app.py ln 88  the inputs are {inputs}")
     
     # Simulate AI processing (replace with actual AI logic)
     st.write("Generating test cases...")
     # Placeholder for AI output, replace with actual generated test cases
-    generated_test_cases = app.stream(inputs)
-
+    # generated_test_cases = app.stream(inputs)
+    for output in app.stream(inputs):
+        for key, value in output.items():
+            print(f"Finished running: {key}:")
+        
     # generated_test_cases = f"**Generated Test Cases (using {selected_model}):**\n\nQuery: {user_query}\n\n1. Test Case 1\n2. Test Case 2\n3. Test Case 3\n\n... (more generated test cases)"
-    st.markdown(generated_test_cases)
+    # st.markdown(generated_test_cases)
