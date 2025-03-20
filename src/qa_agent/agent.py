@@ -88,7 +88,7 @@ def route_user_request(state: GraphState) -> str:
 def generate_testcases(user_request, requirements_content, llm, format_type):
     prompt = (
     "You are an expert in generating QA testcases for any known formats. \n" + 
-    "Study the given 'Requirements Documents Content' carefully and generate about 5-10 testcases in the suggested 'Format'\n" +
+    "Study the given 'Requirements Documents Content' carefully and generate about 3 testcases in the suggested 'Format'\n" +
     "You may want to look at the original User Request just to make sure that you are ansering th request properly.\n" +
     f"User Request: {user_request}\n" +
     f"Requirements Documents Content: {requirements_content}\n" +
@@ -128,22 +128,6 @@ def generate_gherkin_testcases_node_function(state: GraphState) -> GraphState:
     
     return state
 
-def format_response(state:GraphState)-> str:
-    # Access the 'content' field within the 'testcases' dictionary
-    test_cases_content = state['testcases']
-
-    print(f"YHK: inside format_response with test_cases_content as {test_cases_content}")
-
-    # Split the content into lines
-    lines = test_cases_content.split('\n')
-
-    # Filter out lines that start with "Test Case"
-    test_case_lines = [line for line in lines if line.startswith("Test Case")]
-
-    # Print the test case lines
-    # for line in test_case_lines:
-    #     print(line)
-    return test_case_lines
 
 #############################################################################
 # 4. To generate Selenium formatted Testcase
