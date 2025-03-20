@@ -8,38 +8,44 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 import re
 
+## <YHK> Each client atomatically searches for these specific keys in ENV
+
 # os.environ["TAVILY_API_KEY"]=st.secrets["TAVILY_API_KEY"]
 # os.environ["GROQ_API_KEY"]=st.secrets["GROQ_API_KEY"]
 
-tavily_api_key = os.getenv("TAVILY_API_KEY")
-groq_api_key = os.getenv("GROQ_API_KEY")
+# tavily_api_key = os.getenv("TAVILY_API_KEY")
+# groq_api_key = os.getenv("GROQ_API_KEY")
 
 #############################################################################
-# 1. Define the GraphState (minimal fields: question, generation, websearch_content)
+# 1. Define the GraphState 
 #############################################################################
 class GraphState(TypedDict):
-    question: str
-    generation: str
-    websearch_content: str  # we store Tavily search results here, if any
-    web_flag: str #To know whether a websearch was used to answer the question
+    user_request: str
+    requirements_docs_content: str
+    requirements_docs_summary: str
+    gherkin_testcases: str
+    selenium_testcases: str  
+    testcases_format_flag: str
+    testcases: str
 
 #############################################################################
-# 2. Router function to decide whether to use web search or directly generate
+# 2. Router function to decide whether to output gherkin or selenium
 #############################################################################
-def route_question(state: GraphState) -> str:
-    question = state["question"]
-    web_flag = state.get("web_flag", "False")
+def route_user_request(state: GraphState) -> str:
+    print(f"YHK: inside route_user_request with state as {state}")
+    user_request = state["user_request"]
+    # testcases_format_flag = state.get("testcases_format_flag", "False")
     tool_selection = {
-    "websearch": (
-        "Questions requiring recent statistics, real-time information, recent news, or current updates. "
+    "gherkin_testcases": (
+        "Use requests generation of testcases in Gherkin format "
     ),
-    "generate": (
-        "Questions that require access to a large language model's general knowledge, but not requiring recent statistics, real-time information, recent news, or current updates."
+    "selenium_testcases": (
+        "Use requests generation of testcases in Selenium format"
     )
     }
 
-    SYS_PROMPT = """Act as a router to select specific tools or functions based on user's question, using the following rules:
-                    - Analyze the given question and use the given tool selection dictionary to output the name of the relevant tool based on its description and relevancy with the question. 
+    SYS_PROMPT = """Act as a router to select specific testcase foramt or functions based on user's request, using the following rules:
+                    - Analyze the given user's request and use the given tool selection dictionary to output the name of the relevant tool based on its description and relevancy. 
                     - The dictionary has tool names as keys and their descriptions as values. 
                     - Output only and only tool name, i.e., the exact key and nothing else with no explanations at all. 
                 """
@@ -48,7 +54,7 @@ def route_question(state: GraphState) -> str:
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", SYS_PROMPT),
-            ("human", """Here is the question:
+            ("human", """Here is the user's request:
                         {question}
                         Here is the tool selection dictionary:
                         {tool_selection}
@@ -59,101 +65,102 @@ def route_question(state: GraphState) -> str:
 
     # Pass the inputs to the prompt
     inputs = {
-        "question": question,
+        "user_request": user_request,
         "tool_selection": tool_selection
     }
 
     # Invoke the chain
     tool = (prompt | st.session_state.llm | StrOutputParser()).invoke(inputs)
     tool = re.sub(r"[\\'\"`]", "", tool.strip()) # Remove any backslashes and extra spaces
-    if tool == "websearch":
-        state["web_flag"] = "True"
+    
+    ## <YHK> Assuming only 2 for now
+    if tool == "gherkin_testcases":
+        state["testcases_format_flag"] = "gherkin_testcases"
+    else:
+        state["testcases_format_flag"] = "selenium_testcases"
+        
     print(f"Invoking {tool} tool through {st.session_state.llm.model_name}")
     return tool
 
-#############################################################################
-# 3. Websearch function to fetch context from Tavily, store in state["websearch_content"]
-#############################################################################
-def websearch(state: GraphState) -> GraphState:
-    """
-    Uses Tavily to search the web for the question, then appends results into `websearch_content`.
-    """
-    question = state["question"]
-    
-    if "tavily_client" not in st.session_state:
-        st.session_state.tavily_client = TavilyClient(api_key=tavily_api_key)
-
+def generate_testcases(user_request, requirements_content, llm, format_type):
+    prompt = (
+    "You are an expert in generating QA testcases for any known formats"
+    "Study the given 'Requirements Documents Content' carefully and generate about 5-10 testcases in the suggested 'Format'"
+    "You may want to look at the original User Request just to make sure that you are ansering th request properly."
+    f"User Request: {user_request}\n\n"
+    f"equirements Documents Content: {requirements_content}\n\n"
+    f"Format: {format_type}"
+    "Answer:"
+    )
     try:
-        print("Performing Tavily web search...")
-        search_result = st.session_state.tavily_client.get_search_context(
-            query=question,
-            search_depth="advanced",
-            max_tokens=2048
-        )
-        # The tavily_client may return a string or dict
-        if isinstance(search_result, dict) and "documents" in search_result:
-            # Merge all doc contents
-            docs = [doc.get("content", "") for doc in search_result["documents"]]
-            state["websearch_content"] = "\n\n".join(docs)
-            state["web_flag"] = "True"
-        else:
-            # If it's just a string or something else
-            state["websearch_content"] = str(search_result)
-            state["web_flag"] = "True"
-
+        response = llm.invoke(prompt)
     except Exception as e:
-        print(f"Error during Tavily web search: {e}")
-        state["websearch_content"] = f"Error from Tavily: {e}"
-
-    return state
+        response = f"Error generating answer: {str(e)}"
+        
+    return response
 
 #############################################################################
-# 4. Generation function that calls Groq LLM, optionally includes websearch content
+# 3. To generate Gherikin formatted Testcases
 #############################################################################
-def generate(state: GraphState) -> GraphState:
-    question = state["question"]
-    context = state.get("websearch_content", "")
-    web_flag = state.get("web_flag", "False")
+def generate_gherkin_testcases(state: GraphState) -> GraphState:
+    """
+    Uses LLM to generate Gherikin formatted Testcases of `requirements_docs_summary`.
+    """
+    print(f"YHK: inside generate_gherkin_testcases with state as {state}")
+
+    user_request = state["user_request"]
+    requirements_docs_summary = state.get("requirements_docs_summary", "")
+    testcases_format_flag = state.get("testcases_format_flag", "False")
     if "llm" not in st.session_state:
         raise RuntimeError("LLM not initialized. Please call initialize_app first.")
 
-    prompt = (
-        "You are a helpful assistant specialized in providing helpful information.\n\n"
-        "If context is available, answer the question based on the context."
-        "If there is no context with the question, answer the question from your own knowledge."
-        "If web_flag is 'True', cite all the URLs in the context in this format: Sources: \n URL1\n URL2, ..."
-        f"Question: {question}\n\n"
-        f"Context: {context}\n\n"
-        f"web_flag: {web_flag}"
-        "Answer:"
-        )
-    try:
-        response = st.session_state.llm.invoke(prompt)
-        state["generation"] = response
-    except Exception as e:
-        state["generation"] = f"Error generating answer: {str(e)}"
-
+    response = generate_testcases(user_request, requirements_docs_summary,st.session_state.llm, testcases_format_flag)
+    
+    state ['testcases'] = response
+    
     return state
+
+#############################################################################
+# 4. To generate Selenium formatted Testcase
+#############################################################################
+def generate_selenium_testcases(state: GraphState) -> GraphState:
+    """
+    Uses LLM to generate Selenium formatted Testcases of `requirements_docs_summary`.
+    """    
+    print(f"YHK: inside generate_selenium_testcases with state as {state}")
+    
+    user_request = state["user_request"]
+    requirements_docs_summary = state.get("requirements_docs_summary", "")
+    testcases_format_flag = state.get("testcases_format_flag", "False")
+    if "llm" not in st.session_state:
+        raise RuntimeError("LLM not initialized. Please call initialize_app first.")
+
+    response = generate_testcases(user_request, requirements_docs_summary,st.session_state.llm, testcases_format_flag)
+    
+    state ['testcases'] = response
+    
+    return state
+
 
 #############################################################################
 # 5. Build the LangGraph pipeline
 #############################################################################
 workflow = StateGraph(GraphState)
 # Add nodes
-workflow.add_node("websearch", websearch)
-workflow.add_node("generate", generate)
-# We'll route from "route_question" to either "websearch" or "generate"
-# Then from "websearch" -> "generate" -> END
-# From "generate" -> END directly if no search is needed.
+workflow.add_node("gherkin_testcases", generate_gherkin_testcases)
+workflow.add_node("selenium_testcases", generate_selenium_testcases)
+# We'll route from "route_user_request" to either "gherkin_testcases" or "selenium_testcases"
+# From "gherkin_testcases" -> END
+# From "geselenium_testcasesnerate" -> END 
 workflow.set_conditional_entry_point(
-    route_question,  # The router function
+    route_user_request,  # The router function
     {
-        "websearch": "websearch",
-        "generate": "generate"
+        "gherkin_testcases": "generate_gherkin_testcases",
+        "selenium_testcases": "generate_selenium_testcases"
     }
 )
-workflow.add_edge("websearch", "generate")
-workflow.add_edge("generate", END)
+workflow.add_edge("gherkin_testcases", END)
+workflow.add_edge("selenium_testcases", END)
 
 #############################################################################
 # 6. The initialize_app function
@@ -163,12 +170,12 @@ def initialize_app(model_name: str):
     Initialize the app with the given model name, avoiding redundant initialization.
     """
     # Check if the LLM is already initialized
-    if "current_model" in st.session_state and st.session_state.current_model == model_name:
+    if "selected_model" in st.session_state and st.session_state.selected_model == model_name:
         return workflow.compile()  # Return the compiled workflow directly
 
     # Initialize the LLM for the first time or switch models
     st.session_state.llm = ChatGroq(model=model_name, temperature=0.0)
-    st.session_state.current_model = model_name
+    st.session_state.selected_model = model_name
     print(f"Using model: {model_name}")
     return workflow.compile()
 
