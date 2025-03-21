@@ -15,9 +15,19 @@ Automate QA processes using Agent workflows
 
 
 ###################################################################################################
+
 Tech Stack:
-Groq API
-LLM model - gemma2-9b-it
-Agent framework - Langchain
-UI - Streamlit
+
+1. Groq API
+2. LLM model - gemma2-9b-it
+3. Agent framework - Langchain
+4. UI - Streamlit
+
 ###################################################################################################
+
+To execute :
+
+---- streamlit run QAProcessAutomationAgent_UI.py
+
+###################################################################################################
+
