@@ -2,7 +2,7 @@ import streamlit as st
 import io
 import pypdf
 import os
-from reqDocSummarizer_GroqLangChain_UI import simple_AI_Function_Agent, convert_requirements_to_testcases
+from QAProcessAutomationAgent import simple_AI_Function_Agent, convert_requirements_to_testcases
 from groq import Groq
 
 # App title
