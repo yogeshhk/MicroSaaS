@@ -11,6 +11,23 @@ Position as a coach and thought leader in a pioneering a transformative approach
 - **Emergent:** Unlocking potential from interconnected systems
 - **021 (Zero to One):** Symbolic representation of disruptive innovation
 
+### Prominent Theme: Systems & Graphs with AI
+
+**Systems are everywhere!** 🌍🔗 From biology and physics to mathematics and software—everything operates within a system. (see *Thinking in Systems* by Donella Meadows. 📖)  
+
+A system is essentially a **set of interconnected elements with a function or purpose**. But here’s the catch—systems are more than just the sum of their parts! (Think *2+2=5* 🤯). With feedback loops and self-organization, they create emergent behaviors that are often unpredictable.  
+
+One powerful way to represent systems? **Graphs!** 📊  
+
+Graphs are everywhere—social networks, molecular structures, geometric shapes, and more. But what happens when we take graphs a step further? **Knowledge Graphs** bring us even closer to modeling reality, unlocking new AI possibilities. 🚀  
+
+Here’s what I’m currently exploring in this space:  
+✅ **Graph RAG** – Retrieving relational contexts beyond similarity, building a [chatbot](https://github.com/yogeshhk/Sarvadnya/tree/master/src/ask_yogasutra) on Indic wisdom 📜🤖 
+✅ **Graph Neural Networks (GNNs)** – Learning embeddings for predictions/classifications, a consulting project, presentations [here](https://github.com/yogeshhk/TeachingDataScience)  
+✅ **Geometric Deep Learning** – Developing invariant representations for tasks like dimensionality reduction - [MidcurveNN](https://github.com/yogeshhk/MidcurveNN)  
+✅ **Graph-based Agents** – Automating workflows with intelligent agents, potential MicroSaaS idea 💡, that's [here](https://github.com/yogeshhk/MicroSaaS/tree/master/src/qa_agent)  
+
+
 <!--
 
 ### Founder's Unique Perspective
