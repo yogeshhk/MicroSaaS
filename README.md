@@ -1,107 +1,96 @@
-# MicroSaaS: Emergent Approach to Strategic Innovation
+# MicroSaaS: AI Agents
 
-## 🎯 Executive Summary
-Position as a coach and thought leader in a pioneering a transformative approach to strategic innovation through a **MicroSaaS** methodology focused on unlocking hidden potential. **Not Looking for Success but for Wonder!!**
+Large Language Models (LLMs) are transformative AI models capable of generating human-like text, understanding natural language, and performing a wide range of tasks. However, deploying and interacting with LLMs can be challenging, especially when it comes to integrating them with other systems and managing their behavior.
 
-### MicroSaaS Principles
+LLM-Agents aims to simplify the process of building and deploying LLM-based agents by providing a modular and extensible framework. It abstracts away the complexities of working with LLMs and offers a set of tools and utilities for creating, configuring, and managing intelligent agents.
+
+## MicroSaaS Principles
 - **Micro**: Emphasizing solo or small team dynamics
 - **SaaS**: Strategy AI Agents Systems | Software As A Service approach
 
-### Core Philosophy: Emergent 021
-- **Emergent:** Unlocking potential from interconnected systems
-- **021 (Zero to One):** Symbolic representation of disruptive innovation
 
-### Prominent Theme: Systems & Graphs with AI
+## AI Agents
+<!-- Agents == कारक (Kāraka)
 
-**Systems are everywhere!** 🌍🔗 From biology and physics to mathematics and software—everything operates within a system. (see *Thinking in Systems* by Donella Meadows. 📖)  
-
-A system is essentially a **set of interconnected elements with a function or purpose**. But here’s the catch—systems are more than just the sum of their parts! (Think *2+2=5* 🤯). With feedback loops and self-organization, they create emergent behaviors that are often unpredictable.  
-
-One powerful way to represent systems? **Graphs!** 📊  
-
-Graphs are everywhere—social networks, molecular structures, geometric shapes, and more. But what happens when we take graphs a step further? **Knowledge Graphs** bring us even closer to modeling reality, unlocking new AI possibilities. 🚀  
-
-Here’s what I’m currently exploring in this space:  
-✅ **Graph RAG** – Retrieving relational contexts beyond similarity, building a [chatbot](https://github.com/yogeshhk/Sarvadnya/tree/master/src/ask_yogasutra) on Indic wisdom 📜🤖 
-✅ **Graph Neural Networks (GNNs)** – Learning embeddings for predictions/classifications, a consulting project, presentations [here](https://github.com/yogeshhk/TeachingDataScience)  
-✅ **Geometric Deep Learning** – Developing invariant representations for tasks like dimensionality reduction - [MidcurveNN](https://github.com/yogeshhk/MidcurveNN)  
-✅ **Graph-based Agents** – Automating workflows with intelligent agents, potential MicroSaaS idea 💡, that's [here](https://github.com/yogeshhk/MicroSaaS/tree/master/src/qa_agent)  
-
-
-<!--
-
-### Founder's Unique Perspective
-Leveraging INFJ cognitive empathy and systems engineering expertise to decode complex adaptive challenges through an innovative lens.
-
- ## Notes
-- [StrategyFlow](./references/Notes_StrategyFlow.md)
-- [RLConsult](./references/Notes_RLConsult.md)
-- [AgentsConsult](./references/Notes_AgentsConsult.md)
-- [SystemsConsult](./references/Notes_SystemsConsult.md)
-
-## Mission
-The mission is to consult individuals and organizations to model, analyze, and solve problems across any domain. 
-
-## Vision
-Develop a portable language for modeling, analyzing, and solving problems across diverse domains through systems thinking AI Agents.
-
-### Key Features
-- **Personalized Coaching**: 1:1 coaching sessions tailored to INFJs, leveraging their unique ability to grasp complex emotional and systemic dynamics rapidly.
-- **Universal Applicability**: A toolset that transcends industries, from healthcare and finance to education and governance.
-- **Open-Source Advantage**: Community-driven innovation ensures accessibility and continuous improvement.
-
-## How We Are Unique
-- **Specific Knowledge is Untrainable**: Our founder's mastery in grasping complex systems, combining INFJ cognitive empathy with systems engineering expertise, is at the core of our offering.
-- **IKIGAI-Driven Design**: Every feature is designed to align with users' purpose and unlock passive income streams through mastery of systems thinking.
-- **Ancient Meets Modern**: By coding Sanskrit principles into systems models, we connect time-tested wisdom with cutting-edge technology.
-
-## Who Is This For?
-- Individuals seeking clarity and mastery over their personal and professional challenges.
-- Organizations aiming to streamline processes and anticipate systemic challenges.
-- Coaches and consultants wanting to enhance their offerings.
-
-## 🔍 IKIGAI Analysis
-
-**Alignment Principles:**
-- Integrating personal passion with transformative technologies
-- Addressing market needs through innovative problem-solving
-- Leveraging unique expertise across disciplines
-- Creating scalable platforms for personal and professional growth
-- Enabling passive income through strategic methodologies
-
-**Unique Selling Proposition (USP):**
-- Synthesizing complex system understanding with innovative technologies
-- Creating portable modeling languages that transcend traditional boundaries
-- Bridging ancient wisdom with contemporary problem-solving approaches
-
-## 💡 Critical Analysis
-
-**Core Strengths:**
-- Systems thinking integration
-- Visual and intuitive modeling approaches
-- Open-source collaborative foundations
-- Rapid problem comprehension
-- Bridging traditional and modern knowledge frameworks
-
-**Inherent Challenges:**
-- Complex technical implementation
-- Resource and scalability considerations
-- Market education requirements
-- Continuous innovation demands
-
-## Philosophical Approach
-- Emphasizing wonder over traditional success metrics
-- Celebrating systemic complexity
-- Promoting adaptive and integrative thinking
-- Connecting diverse knowledge domains
-
+कारक (Kāraka) from Sanskrit means agent, doer. 'Kaaraka' is an open-source project that provides a framework for building and deploying intelligent agents powered by large language models (LLMs). These agents can be used for various tasks such as question-answering, task automation, personalized assistance, and more.
  -->
- 
-## Community and Collaboration
-Committed to collaborative innovation, knowledge sharing, and continuous learning across disciplines and technologies.
+"Vertical AI Agents could be 10X bigger than SaaS" - Y Combinator
 
-## 🤝 Contribution Philosophy
-Open to collaborative contributions that challenge existing paradigms and unlock new potential in strategic thinking and innovation.
+Levels of LLMs: QnA (atomic Prompts) -> Chatbot (with context) -> RAG (own data) -> Agents (Actions/Tools) -> OS (multiple functions, customizable tools)
 
-## 📄 Licensing
-Embracing open-source principles to democratize knowledge and innovation.
+Need to build something "WoW!!". So, not looking for Success but for Wonder!!. Think of a [Startup](./Notes_Startup.md).
+
+## Projects
+- [QA testcases Generation AI Agents, by Anjali](https://github.com/yogeshhk/MicroSaaS/tree/master/src/QAProcessAutomation-LangChain), [Publication](https://app.readytensor.ai/publications/automating-qa-processes-with-ai-agents-a-modern-approach-to-test-case-generation-mCZYj3AaN6CZ)
+
+
+## Frameworks
+- **LangGraph**: Open-source, inline with LangChain, good definition of workflows, conditional-edges, open-source LLMs native
+- **AutoGen**: open-source (yes, though from Microsoft), assuming enterprise grade, deployable on Azure, less pattern/graph definition support, workaround to use open-source LLMs
+- **CrewAI**: open-source
+
+## Lang* Ecosystem
+- **LangChain**: LangChain is an open-source framework designed to simplify building applications powered by language models. It helps developers chain prompts, interact with external data, and create context-aware applications. LangChain abstracts the complexity of managing API calls, memory, and agent decisions, reducing boilerplate code and improving maintainability.
+
+- **LangGraph**: LangGraph is built on top of LangChain to manage agents and workflows, making it ideal for applications that involve multiple agents interacting to solve complex tasks. Use Cases: Task automation, Research assistants, Scenarios where agents collaborate and interact in cyclical workflows.
+
+- **LangFlow**: LangFlow is a drag-and-drop interface built on top of LangChain, aimed at prototyping AI-powered applications quickly without needing to write code.
+
+- **LangSmith**: LangSmith assists with deploying, testing, and monitoring LLM-based applications, ensuring that agents and LLM calls perform as expected.
+
+- **LangServe**: LangServe is a tool designed for serving and deploying language model applications at scale. It facilitates the deployment of LLM-based applications in production environments with enhanced performance, scalability, and monitoring capabilities.
+
+### Selection
+
+1. **For Software Development Tasks:** : **Autogen**: Best framework overall for this use case due to its robust features and ease of use.
+2. **For Newbies:**: **OpenAI Swarm** and **Crew AI**: Easy to get started with.  **Crew AI** is preferable due to better community support and production readiness.
+3. **For Complex Tasks:** :**LangGraph**: Ideal for managing complicated pipelines and workflows.
+4. **For Open-Source LLM Integration:**: **LangGraph** and **Crew AI**: Excellent support for leveraging open-source models.
+5. **For Community Support:**  **Autogen**: Mature and active community, including resources like a subreddit.
+6. **For Quick Deployment:**: **Crew AI**: Ready-to-go with minimal effort—just define some prompts, and it’s ready.
+7. **Cost-Effective Solutions:** : **Magentic One**: Pre-packaged setup with four default agents, reducing initial cost.  
+   - **OpenAI Swarm**: Another cost-effective option.
+
+**Decision**: LangGraph (with RAG tools from LangChain, Open Source LLMs are native, deploy with LangServe, debug with LangSmith), all for Free
+
+## Key Features to look for
+- **Agent Creation**: Define agents with specific capabilities, knowledge bases, and personas using a declarative configuration approach, similar to Predibase-Ludwig. Using this config, one can instantiate any agentic framework such as Microsoft's AutoGen or Crew.AI or LangGraph.
+- **Modular Design**: Easily swap out or customize different components of an agent, such as the language model, knowledge base, or decision-making strategy.
+- **Multi-modal Support**: Agents can process and generate various data types, including text, images, audio, and more.
+- **Monitoring and Logging**: Comprehensive logging and monitoring capabilities for tracking agent performance, debugging, and auditing.
+- **Deployment Options**: Deploy agents locally, on cloud platforms, or as microservices, with support for scaling and load balancing.
+- **Security and Privacy**: Built-in safeguards and controls for ensuring the responsible and ethical use of LLM-based agents.
+
+## Applications
+- **Quality Assurance** build test-case generator based on Requirements Documents, using agents at the back.
+- **Brainstorming** to generate various ideas, apply given constraints. [Example: "Brainstorming with multiple AI AGENTS, Sai Panyam, Innovation Algebra Guest"](https://www.youtube.com/watch?v=82UDm2yVe3Q) Talk
+- **Negotiations, Debating** to come at optimized solution
+- **Advisory** such as Investment Advisors, which looks at your earnings, risk profile, goals and using multiple specialized expert-agents, comes up with investment plan. [Example](https://github.com/wtlow003/investment-advisor-gpt)
+- **Automated Research**: Market Research or even publications/social-media search, collate output, analyze and generate a report.
+
+
+(Not mission-critical or enterprise level yet, I guess, due to non-definiteness of the output. So, human-in-loop ie in Assistive/Co-pilot mode)
+
+
+## References
+
+### Learning
+- [LangGraph Mastery Playlist - by Sunny Savita](https://www.youtube.com/playlist?list=PLQxDHpeGU14AJ4sBRWLBqjMthxrLXJmgF)
+- [AI Agents by Atef Ataya](https://www.youtube.com/playlist?list=PLQog6EfhK_pIVm6A6f-CyZwvZAy5sKmwe)
+- [LangGraph: Mastering Advanced AI Workflows by Atef Ataya](https://www.youtube.com/playlist?list=PLQog6EfhK_pJ7I4bLBobe7Yikp5fQfEXU)
+- [Large Language Model Agents MOOC, Fall 2024](https://llmagents-learning.org/f24), [Youtube Playlist](https://www.youtube.com/playlist?list=PLS01nW3RtgopsNLeM936V4TNSsvvVglLc)
+- [New Course: AI Agents in LangGraph DeepLearningAI](https://www.youtube.com/watch?app=desktop&v=EqEXTGot2xs)
+- [Society of Mind](https://en.wikipedia.org/wiki/Society_of_Mind) by Marvin Minsky Intelligence, Graphs, Agents, Memory, [EPub](http://aurellem.org/society-of-mind/)
+
+
+### Companies
+- [gpt.ai](https://www.gpt.ai/) AI automations
+- [](https://finetune.dev/) by [Julian Saks](https://www.linkedin.com/in/juliansaks/) [Github Memary](https://github.com/kingjulio8238/Memary)  Agent Memories
+
+## Disclaimer
+
+Agents is a research project and should not be used in critical or high-stakes applications without proper testing, evaluation, and risk assessment. The project maintainers and contributors are not responsible for any consequences resulting from the use of this software.
+
+## License
+
+Agents is released under the [MIT License](LICENSE).
